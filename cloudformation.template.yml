@@ -15,4 +15,6 @@ Resources:
           - |
             #!/bin/bash
             export DISCORD_BOT_TOKEN=${discord_bot_token}
+            npm install
+            npm run start:prod
           - discord_bot_token: "{{resolve:ssm-secure:pbs_hll_discord_bot_token:1}}"
