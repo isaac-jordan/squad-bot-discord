@@ -39,16 +39,22 @@ Currently known prerequisites:
 1. Clone the repo
 ```sh
 git clone https://github.com/isaac-jordan/hll-discord-bot.git
+cd hll-discord-bot
 ```
 1. Create a new Discord application at https://discord.com/developers/applications
-1. Head to the "Bot" tab, grab the token, and paste it into credentials.json as `discord_bot_token`
+1. Head to the "Bot" tab, grab the token, and paste it into credentials.json as `discord_bot_token` like so
+```json
+{
+    "discord_bot_token": "<your_token>"
+}
+```
 1. Head to the "OAuth2" tab:
   1. Select "bot" as the scope
   1. Select these permissions:
     1. `View Channels`
     1. `Send Messages`
     1. `Attach Files`
-  1. Copy the URL (starting `https://discord.com/api/oauth2/authorize?`), and paste it into credentials.json as `_auth_url`.
+  1. Copy the URL (starting `https://discord.com/api/oauth2/authorize?`), and use it to add the bot to your test server (it can be useful to write this down inside credentials.json)
 1. Install NPM packages
 ```sh
 npm install
