@@ -5,7 +5,14 @@ Resources:
   DiscordBotServer: #An inline comment
     Type: "AWS::EC2::Instance"
     Properties: 
-      
       ImageId: "ami-0bb3fad3c0286ebd5" # Amazon Linux 2 AMI (HVM), SSD Volume Type
       InstanceType: t2.micro
       KeyName: WorkMacbook
+
+      # Requires an Systems Manager Parameter of type SecureString called "pbs_hll_discord_bot_token" to already exist
+      UserData:
+        Fn::Base64: !Sub
+          - |
+            #!/bin/bash
+            export DISCORD_BOT_TOKEN=${discord_bot_token}
+          - discord_bot_token: "{{resolve:ssm-secure:pbs_hll_discord_bot_token:1}}"
