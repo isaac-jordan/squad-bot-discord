@@ -7,7 +7,7 @@ const isCategoryChannel = (channel: GuildChannel): channel is CategoryChannel =>
 
 const getHellLetLooseVoiceChannels = (channels: GuildChannelManager): GuildChannel[] => {
   return channels.cache.array()
-    .filter((channel) => { return channel.name.includes('Hell Let Loose'); })
+    .filter((channel) => { return channel.name.toLowerCase().includes('hell let loose'); })
     .flatMap((channel) => {
       if (isCategoryChannel(channel)) {
         return channel.children.array()
