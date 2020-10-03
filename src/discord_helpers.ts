@@ -1,5 +1,5 @@
 import {
-  Message, MessageAttachment, CategoryChannel, GuildChannel, GuildChannelManager,
+  Message, MessageAttachment, CategoryChannel, GuildChannel, GuildChannelManager, Constants,
 } from 'discord.js';
 import { convertChannelListToTxt } from './output_helpers';
 
@@ -32,8 +32,23 @@ const handleSquadDump = (msg: Message): void => {
   const outputAttachment = Buffer.from(outputTxt, 'utf8');
 
   const attachment = new MessageAttachment(outputAttachment, 'squads.txt');
+
+  // Attempt to reply to the message first
   msg.reply('Here are the current squads in Discord!', attachment)
-    .catch((err) => { return console.error(err); });
+    .catch((replyErr) => {
+      // Replying didn't work
+      if (replyErr.code === Constants.APIErrors.MISSING_PERMISSIONS) {
+        // This can happen if the bot doesn't have permissions to post
+        // in the channel the command was entered in
+        console.log('Could not reply to command due to missing permissions. Attempting to send as DM.');
+        msg.author.send('Here are the current squads in Discord!', attachment)
+          .catch((dmError) => {
+            console.error('Could not send attachment as DM due to error:', dmError);
+          });
+      } else {
+        console.error('Unknown error when responding to message with attachment:', replyErr);
+      }
+    });
 };
 
 export const handleMessage = (msg: Message): void => {
