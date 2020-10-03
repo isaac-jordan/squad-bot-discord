@@ -41,7 +41,7 @@ const handleSquadDump = (msg: Message): void => {
         // This can happen if the bot doesn't have permissions to post
         // in the channel the command was entered in
         console.log('Could not reply to command due to missing permissions. Attempting to send as DM.');
-        msg.author.send('Here are the current squads in Discord!', attachment)
+        msg.author.send('I couldn\'t respond in the channel due to permissions, so here are the current squads in Discord, straight to your inbox!', attachment)
           .catch((dmError) => {
             console.error('Could not send attachment as DM due to error:', dmError);
           });
