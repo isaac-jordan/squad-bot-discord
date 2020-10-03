@@ -1,9 +1,16 @@
 import Discord from 'discord.js';
+import { existsSync, readFileSync } from 'fs';
 import { handleMessage } from './discord_helpers';
 
-// Requires a credentials.json file to exist (git ignored)
-// JSON file must contain a 'discord_bot_token' key
-import credentials from './credentials.json';
+const getDiscordBotToken = () => {
+  if (existsSync('src/credentials.json')) {
+    const fileData = readFileSync('src/credentials.json', 'utf8');
+    return JSON.parse(fileData).discord_bot_token;
+  } if (process.env.DISCORD_BOT_TOKEN) {
+    return process.env.DISCORD_BOT_TOKEN;
+  }
+  throw new Error('Could not find Discord bot token. Please either provide src/credentials.json or DISCORD_BOT_TOKEN env variable.');
+};
 
 const client = new Discord.Client();
 
@@ -13,4 +20,4 @@ client.on('ready', () => {
 
 client.on('message', handleMessage);
 
-client.login(credentials.discord_bot_token);
+client.login(getDiscordBotToken());
