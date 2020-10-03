@@ -1,0 +1,11 @@
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Deploys an EC2 instance running PBS-HLL-Discord-Bot
+Resources:
+  DiscordBotServer: #An inline comment
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      
+      ImageId: "ami-0bb3fad3c0286ebd5" # Amazon Linux 2 AMI (HVM), SSD Volume Type
+      InstanceType: t2.micro
+      KeyName: WorkMacbook
