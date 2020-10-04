@@ -6,7 +6,7 @@
     "compile": "npx rimraf ./build && tsc && echo Finished building.",
     "build": "npm run compile && npm run test",
     "start:dev": "npx nodemon",
-    "start:prod": "node build/index.js"
+    "start:prod": "node build/src/index.js"
   },
   "repository": {
     "type": "git",
