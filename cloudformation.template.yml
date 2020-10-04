@@ -22,8 +22,3 @@ Resources:
         - Namespace: aws:elasticbeanstalk:environment
           OptionName: ServiceRole
           Value: aws-elasticbeanstalk-service-role
-  ElasticBeanstalkConfiguration:
-    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
-    Properties:
-      ApplicationName: !Ref ElasticBeanstalkApplication
-      EnvironmentId: !Ref ElasticBeanstalkEnvironment
