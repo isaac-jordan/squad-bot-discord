@@ -10,13 +10,8 @@ Resources:
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate
     Properties:
       ApplicationName: !Ref ElasticBeanstalkApplication
+      SolutionStackName: "64bit Amazon Linux 2 v5.2.1 running Node.js 12"
       OptionSettings:
         - Namespace:  aws:elasticbeanstalk:environment
           OptionName: EnvironmentType
           Value: SingleInstance
-  ElasticBeanstalkEnvironment:
-    Type: "AWS::ElasticBeanstalk::Environment"
-    Properties:
-      ApplicationName: !Ref ElasticBeanstalkApplication
-      SolutionStackName: "64bit Amazon Linux 2 v5.2.1 running Node.js 12"
-  
