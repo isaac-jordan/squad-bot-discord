@@ -2,20 +2,21 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Deploys an EC2 instance running PBS-HLL-Discord-Bot
 Resources:
-  DiscordBotServer: #An inline comment
-    Type: "AWS::EC2::Instance"
-    Properties: 
-      ImageId: "ami-0bb3fad3c0286ebd5" # Amazon Linux 2 AMI (HVM), SSD Volume Type
-      InstanceType: t2.micro
-      KeyName: WorkMacbook
-
-      # Requires an Systems Manager Parameter of type SecureString called "pbs_hll_discord_bot_token" to already exist
-      UserData:
-        Fn::Base64:
-          |
-            #!/bin/bash -xe
-            exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-            yum update -y
-            export DISCORD_BOT_TOKEN=${aws ssm get-parameter --name "pbs_hll_discord_bot_token" --with-decryption}
-            npm install
-            npm run start:prod
+  ElasticBeanstalkApplication:
+    Type: "AWS::ElasticBeanstalk::Application"
+    Properties:
+      ApplicationName: "PBS-HLL-Discord-Bot-App"
+  ElasticBeanstalkConfiguration:
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+    Properties:
+      ApplicationName: !Ref ElasticBeanstalkApplication
+      OptionSettings:
+        - Namespace:  aws:elasticbeanstalk:environment
+          OptionName: EnvironmentType
+          Value: SingleInstance
+  ElasticBeanstalkEnvironment:
+    Type: "AWS::ElasticBeanstalk::Environment"
+    Properties:
+      ApplicationName: !Ref ElasticBeanstalkApplication
+      SolutionStackName: "64bit Amazon Linux 2 v5.2.1 running Node.js 12"
+  
