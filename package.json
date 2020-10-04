@@ -3,9 +3,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "npm run test && npx rimraf ./build && tsc && echo Finished building.",
+    "compile": "npx rimraf ./build && tsc && echo Finished building.",
+    "build": "npm run compile && npm run test",
     "start:dev": "npx nodemon",
-    "start:prod": "npm run build && node build/index.js"
+    "start:prod": "node build/index.js"
   },
   "repository": {
     "type": "git",
