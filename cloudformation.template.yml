@@ -6,12 +6,18 @@ Resources:
     Type: "AWS::ElasticBeanstalk::Application"
     Properties:
       ApplicationName: "PBS-HLL-Discord-Bot-App"
-  ElasticBeanstalkConfiguration:
-    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+  ElasticBeanstalkEnvironment:
+    Type: "AWS::ElasticBeanstalk::Environment"
     Properties:
+      EnvironmentName: "PBS-HLL-Discord-Bot-Env"
       ApplicationName: !Ref ElasticBeanstalkApplication
       SolutionStackName: "64bit Amazon Linux 2 v5.2.1 running Node.js 12"
       OptionSettings:
         - Namespace:  aws:elasticbeanstalk:environment
           OptionName: EnvironmentType
           Value: SingleInstance
+  ElasticBeanstalkConfiguration:
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+    Properties:
+      ApplicationName: !Ref ElasticBeanstalkApplication
+      EnvironmentId: !Ref ElasticBeanstalkEnvironment
