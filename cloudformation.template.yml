@@ -9,6 +9,7 @@ Resources:
   ElasticBeanstalkEnvironment:
     Type: "AWS::ElasticBeanstalk::Environment"
     Properties:
+      # DISCORD_BOT_TOKEN env variable is set manually on the EB dashboard
       EnvironmentName: "PBS-HLL-Discord-Bot-Env"
       ApplicationName: !Ref ElasticBeanstalkApplication
       SolutionStackName: "64bit Amazon Linux 2 v5.2.1 running Node.js 12"
