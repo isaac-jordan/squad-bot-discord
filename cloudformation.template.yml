@@ -16,6 +16,12 @@ Resources:
         - Namespace:  aws:elasticbeanstalk:environment
           OptionName: EnvironmentType
           Value: SingleInstance
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: IamInstanceProfile
+          Value: !Ref ElasticBeanstalkEC2Role
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: ServiceRole
+          Value: aws-elasticbeanstalk-service-role
   ElasticBeanstalkConfiguration:
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate
     Properties:
