@@ -1,6 +1,6 @@
 import Discord from "discord.js";
 import { existsSync, readFileSync } from "fs";
-import { handleMessage } from "./discord_helpers";
+import { handleMessage } from "./bot_logic";
 
 const getDiscordBotToken = () => {
   if (existsSync("src/credentials.json")) {
