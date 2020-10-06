@@ -1,4 +1,4 @@
-import { GuildChannel } from 'discord.js';
+import { GuildChannel } from "discord.js";
 
 export const convertChannelListToTxt = (channels: GuildChannel[]): string => {
   const outputArr: string[] = [];
@@ -9,8 +9,8 @@ export const convertChannelListToTxt = (channels: GuildChannel[]): string => {
       outputArr.push(`${member.user.username}\n`);
       console.log(member.user.username);
     });
-    outputArr.push('\n');
+    outputArr.push("\n");
   });
 
-  return outputArr.join('');
+  return outputArr.join("");
 };
