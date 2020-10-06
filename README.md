@@ -38,8 +38,8 @@ Currently known prerequisites:
 
 1. Clone the repo
 ```sh
-git clone https://github.com/isaac-jordan/hll-discord-bot.git
-cd hll-discord-bot
+git clone https://github.com/isaac-jordan/squad-bot-discord.git
+cd squad-bot-discord
 ```
 1. Create a new Discord application at https://discord.com/developers/applications
 1. Head to the "Bot" tab, grab the token, and paste it into credentials.json as `discord_bot_token` like so
@@ -65,13 +65,13 @@ npm install
 ## Usage
 
 1. Add [the bot](https://discord.com/api/oauth2/authorize?client_id=744661621141536808&permissions=101376&scope=bot) to your Discord server
-1. Type `!squaddump` in a text channel in your Discord server
-  1. The bot will respond with a text file containing the users in each voice channel under a channel category containing "Hell Let Loose"
+1. Type `!squadbot <gamename>` in a text channel in your Discord server
+  1. The bot will respond with a text file containing the users in each voice channel under a channel category containing "<gamename>"
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/isaac-jordan/hll-discord-bot/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/isaac-jordan/squad-bot-discord/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 ## Contributing
