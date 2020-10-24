@@ -1,16 +1,32 @@
 import { GuildChannel } from "discord.js";
 
-export const convertChannelListToTxt = (channels: GuildChannel[]): string => {
+export const convertChannelListToTxt = (channels: GuildChannel[]): {
+  outputText: string;
+  totalMemberCount: number;
+} => {
   const outputArr: string[] = [];
+  let totalMemberCount = 0;
   channels.forEach((channel) => {
-    console.log(`Members in: ${channel.name}`);
-    outputArr.push(`${channel.name}\n`);
-    channel.members.forEach((member) => {
+    const members = Array.from(
+      // Retrieve member from Collection<SnowFlake, GuildMember>
+      channel.members.map((member) => {
+        return member;
+      }),
+    );
+
+    console.log(`Found ${members.length} members in: ${channel.name}`);
+    totalMemberCount += members.length;
+    outputArr.push(`${channel.name} (Total: ${members.length})\n`);
+
+    members.forEach((member) => {
       outputArr.push(`${member.user.username}\n`);
       console.log(member.user.username);
     });
     outputArr.push("\n");
   });
 
-  return outputArr.join("");
+  return {
+    outputText: outputArr.join(""),
+    totalMemberCount,
+  };
 };

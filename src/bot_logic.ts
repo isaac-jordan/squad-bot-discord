@@ -37,19 +37,19 @@ const handleSquadDump = (msg: Message): void => {
     return;
   }
 
-  const outputTxt = convertChannelListToTxt(
+  const { outputText, totalMemberCount } = convertChannelListToTxt(
     getVoiceChannelsUnderCategory(guild.channels, categoryToSearchFor)
       .sort((a, b) => { return a.rawPosition - b.rawPosition; }),
   );
 
-  const outputAttachment = Buffer.from(outputTxt, "utf8");
+  const outputAttachment = Buffer.from(outputText, "utf8");
 
   const currentDate = moment().format("YYYY-MM-DD-HH-mm");
   const attachment = new MessageAttachment(outputAttachment, `${categoryToSearchFor.toLowerCase()}-squads-${currentDate}.txt`);
 
   replyInChannelOrFallbackToDirectMessage({
     msgToReplyTo: msg,
-    responseText: `Here are the current ${categoryToSearchFor} squads in Discord!`,
+    responseText: `Here are the current ${categoryToSearchFor} squads in Discord! A total of ${totalMemberCount} member(s).`,
     responseAttachment: attachment,
   });
 };
