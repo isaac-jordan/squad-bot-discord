@@ -19,7 +19,7 @@ Resources:
           Value: SingleInstance
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: InstanceType
-          Value: t4g.nano
+          Value: t3.nano
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: IamInstanceProfile
           Value: aws-elasticbeanstalk-ec2-role
