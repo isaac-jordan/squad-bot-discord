@@ -9,12 +9,6 @@ const KNOWN_SERVERS_LIST: Record<string, string[]> = {
   ],
 };
 
-const hllServerList = [
-  "9262729", // HLL #1
-  "9306871", // HLL #2
-  "9445914", // HLL #3
-];
-
 const config = {
   headers: { Authorization: `Bearer ${cachedGetCredentials("battlemetrics_token")}` },
 };

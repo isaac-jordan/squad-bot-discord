@@ -1,5 +1,5 @@
 import {
-  Message, MessageAttachment, CategoryChannel, GuildChannel, GuildChannelManager, Constants,
+  Message, MessageAttachment, CategoryChannel, GuildChannel, GuildChannelManager, Constants, MessageEmbed,
 } from "discord.js";
 
 export const isCategoryChannel = (channel: GuildChannel): channel is CategoryChannel => {
@@ -21,7 +21,7 @@ export const getVoiceChannelsUnderCategory = (channels: GuildChannelManager, cat
 export interface replyInChannelOrFallbackToDirectMessageArgs {
   msgToReplyTo: Message;
   responseText: string;
-  responseAttachment?: MessageAttachment
+  responseAttachment?: MessageAttachment | MessageEmbed
 }
 export const replyInChannelOrFallbackToDirectMessage = ({ msgToReplyTo, responseText, responseAttachment }: replyInChannelOrFallbackToDirectMessageArgs): void => {
   // Attempt to reply to the message first
