@@ -1,5 +1,4 @@
 import Discord from "discord.js";
-import schedule from "node-schedule";
 import { handleMessage } from "./bot_logic";
 import { cachedGetCredentials } from "./utils";
 
